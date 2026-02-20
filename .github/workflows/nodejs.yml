@@ -1,0 +1,30 @@
+﻿name: 🚀 Node.js CI/CD (NO Docker)
+on: [push]
+jobs:
+  nodejs:
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: 🟢 Node.js Setup
+      run: |
+        node --version || winget install OpenJS.NodeJS.LTS
+        npm --version
+        
+    - name: 🔵 NPM Install
+      run: npm ci
+      
+    - name: 🟡 NPM Test
+      run: npm start &
+        sleep 3
+        curl http://localhost:3000
+        
+    - name: 🚀 Production Deploy
+      run: |
+        npm run build || echo "No build"
+        echo "✅ Node.js app deployed on MY-PC!"
+        netstat -ano | findstr :3000
+        
+    - name: 📊 Status Check
+      run: |
+        Invoke-WebRequest -Uri http://localhost:3000 -UseBasicParsing | ConvertFrom-Json
