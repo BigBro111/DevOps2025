@@ -1,0 +1,15 @@
+﻿{
+  "name": "devops-docker",
+  "version": "1.0.0",
+  "description": "Docker CI/CD GitHub Actions",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "author": "Вагиз Аитов",
+  "license": "MIT"
+}
